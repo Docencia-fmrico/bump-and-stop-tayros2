@@ -30,7 +30,7 @@ Turn::Turn(const std::string & xml_tag_name, const BT::NodeConfiguration & conf)
     : BT::ActionNodeBase(xml_tag_name, conf)
 {
   config().blackboard->get("node", node_);
-
+  srand (time(NULL));
   vel_pub_ = node_->create_publisher<geometry_msgs::msg::Twist>("/output_vel", 100);
 }
 
@@ -40,21 +40,12 @@ void Turn::halt()
 
 BT::NodeStatus Turn::tick()
 {
-  if (status() == BT::NodeStatus::IDLE) {
-    start_time_ = node_->now();
-  }
 
   geometry_msgs::msg::Twist vel_msgs;
   vel_msgs.angular.z = 0.5;
   vel_pub_->publish(vel_msgs);
 
-  auto elapsed = node_->now() - start_time_;
-
-  if (elapsed < 3s) {
-    return BT::NodeStatus::RUNNING;
-  } else {
-    return BT::NodeStatus::SUCCESS;
-  }
+  return BT::NodeStatus::RUNNING;
 }
 
 }  // namespace tyros2_bt_bumpstop

@@ -52,13 +52,14 @@ BT::NodeStatus IsObstacle::tick()
   double distance = 1.0;
   getInput("distance", distance);
 
-  if (last_scan_->ranges[last_scan_->ranges.size() / 2] < distance) {
-    return BT::NodeStatus::SUCCESS;
-  } else {
-    return BT::NodeStatus::FAILURE;
+  for(int i = 0; i < last_scan_->ranges.size(); i++){
+    if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
+      return BT::NodeStatus::SUCCESS;
+    } 
   }
-}
+  return BT::NodeStatus::FAILURE;
 
+}
 }  // namespace tyros2_bt_bumpstop
 
 #include "behaviortree_cpp_v3/bt_factory.h"
