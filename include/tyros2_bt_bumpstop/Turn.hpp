@@ -41,6 +41,7 @@ public:
 private:
   rclcpp::Node::SharedPtr node_;
   rclcpp::Time start_time_;
+  rclcpp::Time turn_time_;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr vel_pub_;
 };
 
