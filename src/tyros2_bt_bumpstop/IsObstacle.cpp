@@ -55,20 +55,33 @@ BT::NodeStatus IsObstacle::tick()
   double distance = 1.0;
   int central_laser;
   getInput("distance", distance);
+  
+  int max_range_val;
+
 
   if (last_scan_->ranges.size() == KOBUKI_LASER_MEASURES) {
-    central_laser = 0;
-  } else if (last_scan_->ranges.size() == TIAGO_LASER_MEASURES) {
-    central_laser = last_scan_->ranges.size() / 2;
+    for(int i = 0; i < KOBUKI_LASER_MEASURES/4; i++){
+      if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
+        return BT::NodeStatus::SUCCESS;
+        }
+      } 
+      for(int i = 270; i < KOBUKI_LASER_MEASURES; i++){
+      if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
+        return BT::NodeStatus::SUCCESS;
+        }
+      } 
+    } 
+  else if (last_scan_->ranges.size() == TIAGO_LASER_MEASURES) {
+    for(int i = 0; i < last_scan_->ranges.size(); i++){
+      if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
+        return BT::NodeStatus::SUCCESS;
+        }
+    } 
   }
+  
+  return BT::NodeStatus::FAILURE;
 
-  if (last_scan_->ranges[central_laser] < distance) {
-    return BT::NodeStatus::SUCCESS;
-  } else {
-    return BT::NodeStatus::FAILURE;
-  }
 }
-
 }  // namespace tyros2_bt_bumpstop
 
 #include "behaviortree_cpp_v3/bt_factory.h"
