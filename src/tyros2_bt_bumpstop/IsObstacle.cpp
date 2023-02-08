@@ -21,6 +21,9 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
 
+const int KOBUKI_LASER_MEASURES = 360;
+const int TIAGO_LASER_MEASURES = 666;
+
 namespace tyros2_bt_bumpstop
 {
 
@@ -50,9 +53,16 @@ BT::NodeStatus IsObstacle::tick()
   }
 
   double distance = 1.0;
+  int central_laser;
   getInput("distance", distance);
 
-  if (last_scan_->ranges[last_scan_->ranges.size() / 2] < distance) {
+  if (last_scan_->ranges.size() == KOBUKI_LASER_MEASURES) {
+    central_laser = 0;
+  } else if (last_scan_->ranges.size() == TIAGO_LASER_MEASURES) {
+    central_laser = last_scan_->ranges.size() / 2;
+  }
+
+  if (last_scan_->ranges[central_laser] < distance) {
     return BT::NodeStatus::SUCCESS;
   } else {
     return BT::NodeStatus::FAILURE;

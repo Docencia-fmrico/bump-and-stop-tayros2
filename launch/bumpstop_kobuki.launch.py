@@ -28,11 +28,11 @@ def generate_launch_description():
         package='tyros2_bt_bumpstop',
         executable='bt_bumpstop',
         parameters=[{
-          'use_sim_time': True
+          'use_sim_time': True,
         }],
         remappings=[
-          ('input_scan', '/scan_raw'),
-          ('output_vel', '/nav_vel')
+          ('input_scan', '/scan'),
+          ('output_vel', '/cmd_vel')
         ],
         output='screen'
     )
