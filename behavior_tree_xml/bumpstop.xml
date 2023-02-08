@@ -5,7 +5,7 @@
         <ReactiveSequence>
             <Fallback>
                 <Inverter>
-                    <Condition ID="IsObstacle" distance="1.0"/>
+                    <Condition ID="IsObstacle" distance="1.5"/>
                 </Inverter>
                 <Sequence>
                     <Action ID="Back"/>
