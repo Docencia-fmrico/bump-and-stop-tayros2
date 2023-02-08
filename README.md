@@ -15,3 +15,6 @@ Puntuación (sobre 10):
 * +2 Readme.md bien documentado con videos. 
 * -3 Warnings o que no pase los tests.
 * +1 Setup de CI/CD
+
+De momento solo he cambiado los name_spaces y nombre del paquete del proyecto del libro del profeosr para que podamos seguir con nuestros cambios. 
+Para ejecutar el programa: ros2 run tyros2_bt_bumpstop bt_bumpstop --ros-args -r input_scan:=/scan_raw -r output_vel:=/nav_vel -p use_sim_time:=true
