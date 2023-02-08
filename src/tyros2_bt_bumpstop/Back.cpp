@@ -27,7 +27,7 @@ namespace tyros2_bt_bumpstop
 using namespace std::chrono_literals;
 
 Back::Back(const std::string & xml_tag_name, const BT::NodeConfiguration & conf)
-    : BT::ActionNodeBase(xml_tag_name, conf)
+: BT::ActionNodeBase(xml_tag_name, conf)
 {
   config().blackboard->get("node", node_);
 

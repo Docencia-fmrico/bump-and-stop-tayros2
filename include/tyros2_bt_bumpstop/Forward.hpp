@@ -27,7 +27,7 @@ namespace tyros2_bt_bumpstop
 
 class Forward : public BT::ActionNodeBase
 {
- public:
+public:
   explicit Forward(const std::string & xml_tag_name, const BT::NodeConfiguration & conf);
 
   void halt()
@@ -40,7 +40,7 @@ class Forward : public BT::ActionNodeBase
     return BT::PortsList({});
   }
 
- private:
+private:
   rclcpp::Node::SharedPtr node_;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr vel_pub_;
 };
