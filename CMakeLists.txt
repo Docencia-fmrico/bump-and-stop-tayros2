@@ -32,13 +32,11 @@ set(dependencies
 include_directories(include ${ZMQ_INCLUDE_DIRS})
 
 add_library(tyros2_forward_bt_node SHARED src/tyros2_bt_bumpstop/Forward.cpp)
-add_library(tyros2_back_bt_node SHARED src/tyros2_bt_bumpstop/Back.cpp)
 add_library(tyros2_turn_bt_node SHARED src/tyros2_bt_bumpstop/Turn.cpp)
 add_library(tyros2_is_obstacle_bt_node SHARED src/tyros2_bt_bumpstop/IsObstacle.cpp)
 
 list(APPEND plugin_libs
   tyros2_forward_bt_node
-  tyros2_back_bt_node
   tyros2_turn_bt_node
   tyros2_is_obstacle_bt_node
 )
