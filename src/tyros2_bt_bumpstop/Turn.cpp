@@ -27,10 +27,10 @@ namespace tyros2_bt_bumpstop
 using namespace std::chrono_literals;
 
 Turn::Turn(const std::string & xml_tag_name, const BT::NodeConfiguration & conf)
-    : BT::ActionNodeBase(xml_tag_name, conf)
+: BT::ActionNodeBase(xml_tag_name, conf)
 {
   config().blackboard->get("node", node_);
-  srand (time(NULL));
+  srand(time(NULL));
   vel_pub_ = node_->create_publisher<geometry_msgs::msg::Twist>("/output_vel", 100);
 }
 
@@ -40,7 +40,6 @@ void Turn::halt()
 
 BT::NodeStatus Turn::tick()
 {
-
   geometry_msgs::msg::Twist vel_msgs;
   vel_msgs.angular.z = 0.5;
   vel_pub_->publish(vel_msgs);
