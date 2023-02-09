@@ -82,7 +82,7 @@ TEST(bt_action, turn_btn)
   rclcpp::Rate rate(10);
   bool finish = false;
   while (!finish && rclcpp::ok()) {
-    finish = tree.rootNode()->executeTick() == BT::NodeStatus::SUCCESS;
+    finish = tree.rootNode()->executeTick() == BT::NodeStatus::RUNNING;
     rclcpp::spin_some(node_sink);
     rate.sleep();
   }
