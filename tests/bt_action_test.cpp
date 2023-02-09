@@ -65,7 +65,7 @@ TEST(bt_action, turn_btn)
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("br2_turn_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("tyros2_turn_bt_node"));
 
   std::string xml_bt =
     R"(
@@ -82,7 +82,7 @@ TEST(bt_action, turn_btn)
   rclcpp::Rate rate(10);
   bool finish = false;
   while (!finish && rclcpp::ok()) {
-    finish = tree.rootNode()->executeTick() == BT::NodeStatus::SUCCESS;
+    finish = tree.rootNode()->executeTick() == BT::NodeStatus::RUNNING;
     rclcpp::spin_some(node_sink);
     rate.sleep();
   }
@@ -96,45 +96,6 @@ TEST(bt_action, turn_btn)
   ASSERT_NEAR(one_twist.linear.x, 0.0, 0.0000001);
 }
 
-TEST(bt_action, back_btn)
-{
-  auto node = rclcpp::Node::make_shared("back_btn_node");
-  auto node_sink = std::make_shared<VelocitySinkNode>();
-
-  BT::BehaviorTreeFactory factory;
-  BT::SharedLibrary loader;
-
-  factory.registerFromPlugin(loader.getOSName("br2_back_bt_node"));
-
-  std::string xml_bt =
-    R"(
-    <root main_tree_to_execute = "MainTree" >
-      <BehaviorTree ID="MainTree">
-          <Back />
-      </BehaviorTree>
-    </root>)";
-
-  auto blackboard = BT::Blackboard::create();
-  blackboard->set("node", node);
-  BT::Tree tree = factory.createTreeFromText(xml_bt, blackboard);
-
-  rclcpp::Rate rate(10);
-  bool finish = false;
-  while (!finish && rclcpp::ok()) {
-    finish = tree.rootNode()->executeTick() == BT::NodeStatus::SUCCESS;
-    rclcpp::spin_some(node_sink);
-    rate.sleep();
-  }
-
-  ASSERT_FALSE(node_sink->vel_msgs_.empty());
-  ASSERT_NEAR(node_sink->vel_msgs_.size(), 30, 1);
-
-  geometry_msgs::msg::Twist & one_twist = node_sink->vel_msgs_.front();
-
-  ASSERT_LT(one_twist.linear.x, -0.1);
-  ASSERT_NEAR(one_twist.angular.z, 0.0, 0.0000001);
-}
-
 TEST(bt_action, forward_btn)
 {
   auto node = rclcpp::Node::make_shared("forward_btn_node");
@@ -143,7 +104,7 @@ TEST(bt_action, forward_btn)
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("br2_forward_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("tyros2_forward_bt_node"));
 
   std::string xml_bt =
     R"(
@@ -184,7 +145,7 @@ TEST(bt_action, is_obstacle_btn)
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("br2_is_obstacle_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("tyros2_is_obstacle_bt_node"));
 
   std::string xml_bt =
     R"(

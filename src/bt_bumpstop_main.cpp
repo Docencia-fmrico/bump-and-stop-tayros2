@@ -32,7 +32,6 @@ int main(int argc, char * argv[])
   BT::SharedLibrary loader;
 
   factory.registerFromPlugin(loader.getOSName("tyros2_forward_bt_node"));
-  factory.registerFromPlugin(loader.getOSName("tyros2_back_bt_node"));
   factory.registerFromPlugin(loader.getOSName("tyros2_turn_bt_node"));
   factory.registerFromPlugin(loader.getOSName("tyros2_is_obstacle_bt_node"));
 

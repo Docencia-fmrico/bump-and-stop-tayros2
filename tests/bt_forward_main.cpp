@@ -34,7 +34,7 @@ int main(int argc, char * argv[])
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("br2_forward_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("tyros2_forward_bt_node"));
 
   std::string xml_bt =
     R"(

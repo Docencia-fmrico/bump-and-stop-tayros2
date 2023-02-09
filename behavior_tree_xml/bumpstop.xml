@@ -3,15 +3,14 @@
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
-            <Fallback>
+            <ReactiveFallback>
                 <Inverter>
                     <Condition ID="IsObstacle" distance="1.5"/>
                 </Inverter>
                 <Sequence>
-                    <Action ID="Back"/>
                     <Action ID="Turn"/>
                 </Sequence>
-            </Fallback>
+            </ReactiveFallback>
             <Action ID="Forward"/>
         </ReactiveSequence>
     </BehaviorTree>
