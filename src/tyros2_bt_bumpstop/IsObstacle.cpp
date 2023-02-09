@@ -58,24 +58,27 @@ BT::NodeStatus IsObstacle::tick()
   
   int max_range_val;
 
-
+  //~ Kobuki laser check
   if (last_scan_->ranges.size() == KOBUKI_LASER_MEASURES) {
     for(int i = 0; i < KOBUKI_LASER_MEASURES/4; i++){
       if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
         return BT::NodeStatus::SUCCESS;
-        }
-      } 
-      for(int i = 270; i < KOBUKI_LASER_MEASURES; i++){
+      }
+    } 
+
+    for(int i = 270; i < KOBUKI_LASER_MEASURES; i++){
       if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
         return BT::NodeStatus::SUCCESS;
-        }
-      } 
+      }
     } 
+  } 
+
+  //~ Tiago laser check
   else if (last_scan_->ranges.size() == TIAGO_LASER_MEASURES) {
     for(int i = 0; i < last_scan_->ranges.size(); i++){
       if(!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance){
         return BT::NodeStatus::SUCCESS;
-        }
+      }
     } 
   }
   
