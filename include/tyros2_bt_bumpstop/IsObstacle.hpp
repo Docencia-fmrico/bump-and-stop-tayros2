@@ -27,7 +27,7 @@ namespace tyros2_bt_bumpstop
 
 class IsObstacle : public BT::ConditionNode
 {
- public:
+public:
   explicit IsObstacle(const std::string & xml_tag_name, const BT::NodeConfiguration & conf);
 
   BT::NodeStatus tick();
@@ -39,7 +39,7 @@ class IsObstacle : public BT::ConditionNode
 
   void laser_callback(sensor_msgs::msg::LaserScan::UniquePtr msg);
 
- private:
+private:
   rclcpp::Node::SharedPtr node_;
   rclcpp::Time last_reading_time_;
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_sub_;
