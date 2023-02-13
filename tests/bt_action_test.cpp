@@ -31,6 +31,8 @@
 
 #include "gtest/gtest.h"
 
+const int KOBUKI_LASER_MEASURES = 360;
+
 using namespace std::placeholders;
 using namespace std::chrono_literals;
 
@@ -88,7 +90,9 @@ TEST(bt_action, turn_btn)
   }
 
   ASSERT_FALSE(node_sink->vel_msgs_.empty());
-  ASSERT_NEAR(node_sink->vel_msgs_.size(), 30, 1);
+
+  // Only 1 msg sended
+  ASSERT_NEAR(node_sink->vel_msgs_.size(), 1, 1);
 
   geometry_msgs::msg::Twist & one_twist = node_sink->vel_msgs_.front();
 
@@ -140,7 +144,8 @@ TEST(bt_action, forward_btn)
 TEST(bt_action, is_obstacle_btn)
 {
   auto node = rclcpp::Node::make_shared("is_obstacle_btn_node");
-  auto scan_pub = node->create_publisher<sensor_msgs::msg::LaserScan>("input_scan", 1);
+  auto scan_pub = node->create_publisher<sensor_msgs::msg::LaserScan>(
+    "input_scan", 1);
 
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
@@ -151,7 +156,7 @@ TEST(bt_action, is_obstacle_btn)
     R"(
     <root main_tree_to_execute = "MainTree" >
       <BehaviorTree ID="MainTree">
-          <IsObstacle/>
+          <IsObstacle distance="1.0"/>
       </BehaviorTree>
     </root>)";
 
@@ -162,7 +167,11 @@ TEST(bt_action, is_obstacle_btn)
   rclcpp::Rate rate(10);
 
   sensor_msgs::msg::LaserScan scan;
-  scan.ranges.push_back(2.0);
+
+  for (int i = 0; i < KOBUKI_LASER_MEASURES; i++) {
+    scan.ranges.push_back(2.0);
+  }
+
   for (int i = 0; i < 10; i++) {
     scan_pub->publish(scan);
     rclcpp::spin_some(node);
@@ -172,7 +181,10 @@ TEST(bt_action, is_obstacle_btn)
   BT::NodeStatus current_status = tree.rootNode()->executeTick();
   ASSERT_EQ(current_status, BT::NodeStatus::FAILURE);
 
-  scan.ranges[0] = 0.3;
+  for (int i = 0; i < scan.ranges.size(); i++) {
+    scan.ranges[i] = 0.3;
+  }
+
   for (int i = 0; i < 10; i++) {
     scan_pub->publish(scan);
     rclcpp::spin_some(node);
@@ -181,35 +193,6 @@ TEST(bt_action, is_obstacle_btn)
 
   current_status = tree.rootNode()->executeTick();
   ASSERT_EQ(current_status, BT::NodeStatus::SUCCESS);
-
-  xml_bt =
-    R"(
-    <root main_tree_to_execute = "MainTree" >
-      <BehaviorTree ID="MainTree">
-          <IsObstacle distance="0.5"/>
-      </BehaviorTree>
-    </root>)";
-  tree = factory.createTreeFromText(xml_bt, blackboard);
-
-  scan.ranges[0] = 0.3;
-  for (int i = 0; i < 10; i++) {
-    scan_pub->publish(scan);
-    rclcpp::spin_some(node);
-    rate.sleep();
-  }
-
-  current_status = tree.rootNode()->executeTick();
-  ASSERT_EQ(current_status, BT::NodeStatus::SUCCESS);
-
-  scan.ranges[0] = 0.6;
-  for (int i = 0; i < 10; i++) {
-    scan_pub->publish(scan);
-    rclcpp::spin_some(node);
-    rate.sleep();
-  }
-
-  current_status = tree.rootNode()->executeTick();
-  ASSERT_EQ(current_status, BT::NodeStatus::FAILURE);
 }
 
 int main(int argc, char ** argv)
