@@ -72,7 +72,7 @@ You can see the Behaviour Tree diagram made in **Groot**:
 <img width=500px src="https://github.com/Docencia-fmrico/bump-and-stop-tayros2/blob/readme/resources/figures/beh-tree.png" alt="explode"></a>
 </div>
 
-
+Basically, it is a reactive sequence where it enters in a reactive fallback. We check if there is an obstacle at less than the distance specified. If it is, we jump to the turn behaviour. In the moment when there is no obstacle at less than the specified distance, we enter in the Forward behaviour.
 
 ## Launcher
 
