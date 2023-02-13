@@ -57,11 +57,21 @@ on:
 This will run the apt-get update and installation commands before compiling the indicated package 
 
 ## Logic and functionality
+The logic of this program is based on the one we saw as an example in class, which can be found in the [following repository](https://github.com/fmrico/book_ros2/tree/main/br2_bt_bumpgo).
+
+The main difference is that being a bump and stop and not a bump and go, the backward movement is eliminated and the behavior tree is modified as we will see later.
+
+In addition, a greater laser range has been used to detect if there is an obstacle in front of us in order to avoid more difficult to detect obstacles such as table legs.
+In order to use the same code for both robots, since they return the sensor information of the laser in a different way, it has been necessary to adjust the verification of the measured distance depending on the robot in operation.
+
+Once we carried out the tests with the kobuki, we observed that sometimes the laser returned certain erroneous values that generated bad behavior. To solve this, the number of rays that hit a nearby obstacle is counted and it is considered valid once it exceeds a threshold.
+
+Below you can see the behavior of both robots in the simulator:\n
+
+[Kobuki](https://urjc-my.sharepoint.com/:i:/g/personal/i_porras_2020_alumnos_urjc_es/EXVMmvkCCJZBtpa2jxzttPABY6VZBY-V71muGdSRGfFyzw)
 
 
-### Kobuki
-
-### Tiago
+[Tiago](https://urjc-my.sharepoint.com/:i:/g/personal/i_porras_2020_alumnos_urjc_es/EenZVRT0luBMiDdr4DpoVywB02wBP9NeRiz9TUlyBtlH2g)
 
 
 ## Behavior Tree Diagram 
@@ -76,6 +86,28 @@ Basically, it is a reactive sequence where it enters in a reactive fallback. We 
 
 ## Launcher
 
+To simplify the launch of the nodes and the remapping of the topcis, a launcher has been created for each of the robots. 
+
+Below you can see the launcher used for the kobuki as an example:
+
+-----------------------------------------------------------------------
+``` python
+def generate_launch_description():
+
+    bumpstop_cmp = Node(
+        package='tyros2_bt_bumpstop',
+        executable='bt_bumpstop',
+        parameters=[{
+          'use_sim_time': True,
+        }],
+        remappings=[
+          ('input_scan', '/scan'),
+          ('output_vel', '/cmd_vel')
+        ],
+        output='screen'
+    )
+``` 
+-----------------------------------------------------------------------
 
 ## Team
 
