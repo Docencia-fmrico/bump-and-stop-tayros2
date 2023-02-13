@@ -16,21 +16,33 @@
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
-- [Practice Goal](#practice-goal)
+- [Project Goal](#project-goal)
 - [Continous Integration](#continous-integration)
-- [Logic and functionality](#logic)
+- [Logic and functionality](#logic-and-functionality)
 - [Behavior Tree diagram](#behavior-tree-diagram)
 - [Launcher](#launcher)
 - [Team](#team)
 - [Licencia](#licencia)
 
-## Practice Goal
+## Project Goal
 
+The aim of this project is to create a ROS2 application in order to make able a robot to do the following tasks:
+ 
+  1. Move forward if there is no obstacle in front of the robot at less than one and a half meters.
+  2. Turn if robot detects an obstacle in front of him at less than one and a half meters.
+
+This behaviour must work in simulator, kobuki robot or Tiago robot. In addition, the repository must contain a package with all the nodes, following the recommended indications and organization of repositories.
 
 ## Continous Integration
 
 
+
 ## Logic and functionality
+
+
+### Kobuki
+
+### Tiago
 
 
 ## Behavior Tree Diagram 
