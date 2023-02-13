@@ -10,7 +10,7 @@
 <div align="center">
 <img width=100px src="https://img.shields.io/badge/status-finished-brightgreen" alt="explode"></a>
 <img width=100px src="https://img.shields.io/badge/license-Apache-orange" alt="explode"></a>
-<img width=90px src="https://img.shields.io/badge/team-TayRos-yellow" alt="explode"></a>
+<img width=90px src="https://img.shields.io/badge/team-TayRos2-yellow" alt="explode"></a>
 </div>
 
 
