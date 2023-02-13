@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# input scan(real robot - simulated robot): /scan_filtered - /scan
+
 from launch import LaunchDescription
 from launch_ros.actions import Node
 

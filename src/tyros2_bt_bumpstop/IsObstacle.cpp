@@ -23,6 +23,8 @@
 
 const int KOBUKI_LASER_MEASURES = 360;
 const int TIAGO_LASER_MEASURES = 666;
+const int FILTERED_RANGE = 0.2;
+const int obstacle_detections_TO_SUCCES = 5;
 
 namespace tyros2_bt_bumpstop
 {
@@ -53,21 +55,31 @@ BT::NodeStatus IsObstacle::tick()
 
   double distance = 1.0;
   int central_laser;
+  int obstacle_detections = 0;
   getInput("distance", distance);
 
 
   if (last_scan_->ranges.size() == KOBUKI_LASER_MEASURES) {  //~ Kobuki laser check
     for (int i = 0; i < KOBUKI_LASER_MEASURES / 4; i++) {
-      if (!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance) {
-        return BT::NodeStatus::SUCCESS;
+      if (!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance &&
+        last_scan_->ranges[i] > FILTERED_RANGE)
+      {
+        obstacle_detections++;
       }
     }
 
     for (int i = 270; i < KOBUKI_LASER_MEASURES; i++) {
-      if (!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance) {
-        return BT::NodeStatus::SUCCESS;
+      if (!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance &&
+        last_scan_->ranges[i] > FILTERED_RANGE)
+      {
+        obstacle_detections++;
       }
     }
+
+    if (obstacle_detections > obstacle_detections_TO_SUCCES) {
+      return BT::NodeStatus::SUCCESS;
+    }
+
   } else if (last_scan_->ranges.size() == TIAGO_LASER_MEASURES) {  //~ Tiago laser check
     for (int i = 0; i < last_scan_->ranges.size(); i++) {
       if (!std::isnan(last_scan_->ranges[i]) && last_scan_->ranges[i] < distance) {
