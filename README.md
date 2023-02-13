@@ -1,20 +1,51 @@
-# PCS-0-BumpStop
-Ejercicio 1 de Planificación y Sistemas Cognitivos 2023
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6870050&assignment_repo_type=AssignmentRepo)
+# bump-and-stop-tayros2
 
-En grupos de 4, haced una aplicación en ROS 2 que haga que un robot:
-1. Avance si no hay un obstáculo delante a menos de un metro y medio.
-2. Gire si detecta un obstáculo delante a menos de un metro y medio.
+<div align="center">
+<img width=600px src="https://github.com/Docencia-fmrico/visual-behavior-tayros/blob/readme/resources/xtion.jpg?raw=true" alt="explode"></a>
+</div>
 
-El repositorio debe contener un paquete que contenga todos los nodos necesarios, siguiendo las recomendaciones de buenas prácticas y organización de los repositorios.
+<h3 align="center"> Visual Behavior </h3>
 
-El robot debe funcionar en el [robot simulado](https://github.com/IntelligentRoboticsLabs/ir_robots), en Tiago o en Kobuki.
+<div align="center">
+<img width=100px src="https://img.shields.io/badge/status-finished-brightgreen" alt="explode"></a>
+<img width=100px src="https://img.shields.io/badge/license-Apache-orange" alt="explode"></a>
+<img width=90px src="https://img.shields.io/badge/team-TayRos-yellow" alt="explode"></a>
+</div>
 
-Puntuación (sobre 10):
-* +8 correcto funcionamiento en el robot simulado.
-* +1 correcto funcionamiento en el robot real.
-* +2 Readme.md bien documentado con videos. 
-* -3 Warnings o que no pase los tests.
-* +1 Setup de CI/CD
 
-De momento solo he cambiado los name_spaces y nombre del paquete del proyecto del libro del profeosr para que podamos seguir con nuestros cambios. 
-Para ejecutar el programa: ros2 run tyros2_bt_bumpstop bt_bumpstop --ros-args -r input_scan:=/scan_raw -r output_vel:=/nav_vel -p use_sim_time:=true
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Practice Goal](#practice-goal)
+- [Continous Integration](#continous-integration)
+- [Logic and functionality](#logic)
+- [Behavior Tree diagram](#behavior-tree-diagram)
+- [Launcher](#launcher)
+- [Team](#team)
+- [Licencia](#licencia)
+
+## Practice Goal
+
+
+## Continous Integration
+
+
+## Logic and functionality
+
+
+## Behavior Tree Diagram 
+
+
+## Launcher
+
+
+## Team
+
+- [Adrian Cobo](https://github.com/AdrianCobo)
+- [Adrian Madinabeitia](https://github.com/madport)
+- [Ivan Porras](https://github.com/porrasp8)
+- [Saul Navajas](https://github.com/SaulN99)
+
+## Licencia 
+<a rel="license" href="https://www.apache.org/licenses/LICENSE-2.0"><img alt="Apache License" style="border-width:0" src="https://www.apache.org/img/asf-estd-1999-logo.jpg" /></a><br/>(TayRos) </a><br/>This work is licensed under a <a rel="license" href="https://www.apache.org/licenses/LICENSE-2.0">Apache license 2.0
+
