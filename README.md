@@ -109,6 +109,33 @@ def generate_launch_description():
 ``` 
 -----------------------------------------------------------------------
 
+## Tests
+We performed tests to ensure the proper functioning of the various nodes in the behavior tree. We also used the copyright and style testing.
+
+To make a test, the first step is create a simplifed bt:
+-----------------------------------------------------------------------
+``` c++
+  BT::BehaviorTreeFactory factory;
+  BT::SharedLibrary loader;
+
+  factory.registerFromPlugin(loader.getOSName("tyros2_is_obstacle_bt_node"));
+
+  std::string xml_bt =
+    R"(
+    <root main_tree_to_execute = "MainTree" >
+      <BehaviorTree ID="MainTree">
+          <IsObstacle distance="1.0"/>
+      </BehaviorTree>
+    </root>)";
+
+  auto blackboard = BT::Blackboard::create();
+  blackboard->set("node", node);
+  BT::Tree tree = factory.createTreeFromText(xml_bt, blackboard);
+``` 
+-----------------------------------------------------------------------
+
+In the obstacle_bt_test, we send a low-valued laser, and the BT node should return "SUCCESS" (indicating that the object is close). However, if the values are high (indicating that the object is far away), the BT node should return "FAILURE".
+
 ## Team
 
 <div align="center">
