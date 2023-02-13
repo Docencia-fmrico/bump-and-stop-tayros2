@@ -35,7 +35,26 @@ This behaviour must work in simulator, kobuki robot or Tiago robot. In addition,
 
 ## Continous Integration
 
+In order to follow the style guide, a continous integration system has been created in the GitHub repository to keep the code changes properly in the same code style.
 
+In the **main.yaml** file of the workflows directory we have indicated to run the continous-integration-system any time a member create a pull-request or push changes in the main branch:
+
+-----------------------------------------------------------------------
+Snippet(.github/workflows/main.yaml):
+``` yaml
+name: main
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+```
+-----------------------------------------------------------------------
+
+This will run the apt-get update and installation commands before compiling the indicated package 
 
 ## Logic and functionality
 
@@ -46,6 +65,10 @@ This behaviour must work in simulator, kobuki robot or Tiago robot. In addition,
 
 
 ## Behavior Tree Diagram 
+
+You can see the Behaviour Tree diagram made in **Groot**:
+
+
 
 
 ## Launcher
