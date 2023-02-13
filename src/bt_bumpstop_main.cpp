@@ -44,7 +44,7 @@ int main(int argc, char * argv[])
 
   auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 10, 1666, 1667);
 
-  rclcpp::Rate rate(10);
+  rclcpp::Rate rate(20);
 
   bool finish = false;
   while (!finish && rclcpp::ok()) {
