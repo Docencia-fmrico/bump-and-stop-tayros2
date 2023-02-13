@@ -136,6 +136,8 @@ To make a test, the first step is create a simplifed bt:
 
 In the obstacle_bt_test, we send a low-valued laser, and the BT node should return "SUCCESS" (indicating that the object is close). However, if the values are high (indicating that the object is far away), the BT node should return "FAILURE".
 
+[Click here to see a final video of the behavior in the real robot](https://urjc-my.sharepoint.com/:v:/g/personal/i_porras_2020_alumnos_urjc_es/ER0GHwYBeyxFnH5sPSufAqwBOiSJ8l9025fa1oZvEpcwfg)
+
 ## Team
 
 <div align="center">
