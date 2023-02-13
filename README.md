@@ -2,7 +2,7 @@
 # bump-and-stop-tayros2
 
 <div align="center">
-<img width=600px src="https://github.com/Docencia-fmrico/visual-behavior-tayros/blob/readme/resources/xtion.jpg?raw=true" alt="explode"></a>
+<img width=300px src="https://github.com/Docencia-fmrico/bump-and-stop-tayros2/blob/readme/resources/figures/tiago.jpg" alt="explode"></a>
 </div>
 
 <h3 align="center"> Visual Behavior </h3>
@@ -68,6 +68,9 @@ This will run the apt-get update and installation commands before compiling the 
 
 You can see the Behaviour Tree diagram made in **Groot**:
 
+<div align="center">
+<img width=500px src="https://github.com/Docencia-fmrico/bump-and-stop-tayros2/blob/readme/resources/figures/beh-tree.png" alt="explode"></a>
+</div>
 
 
 
@@ -75,6 +78,10 @@ You can see the Behaviour Tree diagram made in **Groot**:
 
 
 ## Team
+
+<div align="center">
+<img width=200px src="https://github.com/Docencia-fmrico/bump-and-stop-tayros2/blob/readme/resources/figures/logo.png" alt="explode"></a>
+</div>
 
 - [Adrian Cobo](https://github.com/AdrianCobo)
 - [Adrian Madinabeitia](https://github.com/madport)
