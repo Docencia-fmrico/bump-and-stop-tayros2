@@ -66,7 +66,7 @@ In order to use the same code for both robots, since they return the sensor info
 
 Once we carried out the tests with the kobuki, we observed that sometimes the laser returned certain erroneous values that generated bad behavior. To solve this, the number of rays that hit a nearby obstacle is counted and it is considered valid once it exceeds a threshold.
 
-Below you can see the behavior of both robots in the simulator:\n
+Below you can see the behavior of both robots in the simulator:
 
 [Kobuki](https://urjc-my.sharepoint.com/:i:/g/personal/i_porras_2020_alumnos_urjc_es/EXVMmvkCCJZBtpa2jxzttPABY6VZBY-V71muGdSRGfFyzw)
 
